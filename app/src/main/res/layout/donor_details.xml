@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back1"
+    tools:context="com.foodhero.volunteer.volunteer.Donor_details">
+
+    <RelativeLayout
+        android:layout_width="368dp"
+        android:layout_height="495dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp">
+
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="21dp"
+            android:layout_marginTop="48dp"
+            android:text="Paratha"
+            android:textColor="@android:color/white"
+            android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/tv2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/tv1"
+            android:layout_below="@+id/tv1"
+            android:text="5 persons"
+            android:textColor="@android:color/white"
+            android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/tv3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/tv2"
+            android:layout_below="@+id/tv2"
+            android:text="6 hours"
+            android:textColor="@android:color/white"
+            android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/tv4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/tv3"
+            android:layout_below="@+id/tv3"
+            android:text="BF 109,saltlake , sector 3
+kolkata - 700064
+Landmark : MAKAUT"
+            android:textColor="@android:color/white"
+            android:textSize="20dp" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="100dp"
+            android:layout_height="120dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignTop="@+id/tv1"
+            android:cropToPadding="false"
+            android:paddingRight="20dp"
+            app:srcCompat="@drawable/passport" />
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="140dp"
+            android:layout_height="70dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="40dp"
+            android:layout_marginEnd="90dp"
+            android:background="@android:color/darker_gray"
+            android:onClick="respond"
+            android:text="Out for pickup"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+</android.support.constraint.ConstraintLayout>
