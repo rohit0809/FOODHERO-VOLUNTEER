@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back1"
+    tools:context="com.foodhero.volunteer.volunteer.Wait_for_request">
+
+    <RelativeLayout
+        android:layout_width="529dp"
+        android:layout_height="789dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp">
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="140dp"
+            android:layout_height="70dp"
+            android:layout_marginBottom="330dp"
+            android:layout_marginEnd="260dp"
+            android:onClick="respond"
+            android:background="@android:color/darker_gray"
+            android:text="RESPOND"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="40dp"
+            android:textStyle="bold"
+            android:paddingLeft="60dp"
+            android:textColor="@android:color/white"
+            android:text="FOODHERO"
+            android:layout_alignParentTop="true" />
+    </RelativeLayout>
+</android.support.constraint.ConstraintLayout>
