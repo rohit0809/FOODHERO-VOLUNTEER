@@ -10,12 +10,16 @@ import android.widget.Button;
 public class Wait_for_request extends AppCompatActivity {
     //
 Button b;
+    String rw=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.wait_for_request);
     b=(Button)findViewById(R.id.button);
         b.setOnClickListener(imgButtonHandler);
+       // Intent r=getIntent();
+       // Bundle b=r.getExtras();
+        //rw=b.getString("email");
         //sdmkndj
 //jknkncjksdjknckndsk
 }
@@ -24,6 +28,7 @@ Button b;
         public void onClick(View v) {
             b.setBackgroundResource(R.drawable.buttoni);
             Intent i1=new Intent(Wait_for_request.this,Donor_details.class);
+            //i1.putExtra("email",rw);
             startActivity(i1);
         }
     };

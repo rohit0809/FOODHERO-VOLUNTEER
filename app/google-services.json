@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "78886963576",
+    "firebase_url": "https://foodhero-volunteer.firebaseio.com",
+    "project_id": "foodhero-volunteer",
+    "storage_bucket": "foodhero-volunteer.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:78886963576:android:292b290734f874a5",
+        "android_client_info": {
+          "package_name": "com.foodhero.volunteer.volunteer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "78886963576-gh5priltqcfvpuql2dv3sv037kke0v7g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.foodhero.volunteer.volunteer",
+            "certificate_hash": "2fedce0a62d61eb0f843ddca0d947b0ef25e87d7"
+          }
+        },
+        {
+          "client_id": "78886963576-07be4bjb6dp73vbtsdaev70or1h2e6om.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBi9-y7QCL1BDaFI_FbCaNWIYW-T7rFR4U"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "78886963576-07be4bjb6dp73vbtsdaev70or1h2e6om.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

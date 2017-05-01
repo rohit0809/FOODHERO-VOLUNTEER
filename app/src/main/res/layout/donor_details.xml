@@ -21,7 +21,7 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="21dp"
             android:layout_marginTop="48dp"
-            android:text="Paratha"
+            android:text=" "
             android:textColor="@android:color/white"
             android:textSize="30dp" />
 
@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/tv1"
             android:layout_below="@+id/tv1"
-            android:text="5 persons"
+            android:text=" "
             android:textColor="@android:color/white"
             android:textSize="30dp" />
 
@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/tv2"
             android:layout_below="@+id/tv2"
-            android:text="6 hours"
+            android:text=" "
             android:textColor="@android:color/white"
             android:textSize="30dp" />
 
@@ -51,9 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/tv3"
             android:layout_below="@+id/tv3"
-            android:text="BF 109,saltlake , sector 3
-kolkata - 700064
-Landmark : MAKAUT"
+            android:text=" "
             android:textColor="@android:color/white"
             android:textSize="20dp" />
 

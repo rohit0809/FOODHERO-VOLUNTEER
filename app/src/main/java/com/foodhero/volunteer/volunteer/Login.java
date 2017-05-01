@@ -29,6 +29,13 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +51,8 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
      * Id to identity READ_CONTACTS permission request.
      */
     private static final int REQUEST_READ_CONTACTS = 0;
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
 
     /**
      * A dummy authentication store containing known user names and passwords.
@@ -68,11 +77,12 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
         // Set up the login form.
+        mAuth=FirebaseAuth.getInstance();
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
 
         mPasswordView = (EditText) findViewById(R.id.password);
-        mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+       /* mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
                 if (id == R.id.login || id == EditorInfo.IME_NULL) {
@@ -81,9 +91,27 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
                 }
                 return false;
             }
-        });
+        });*/
 
         Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
+
+        mAuthListener=new FirebaseAuth.AuthStateListener()
+        {
+
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+
+                if(firebaseAuth.getCurrentUser()!=null)
+                {
+                    Intent i=new Intent(Login.this,Wait_for_request.class);
+                    //Intent j=new Intent(Login.this,Donor_details.class);
+                   // i.putExtra("email",mEmailView.getText().toString());
+                    //j.putExtra("email",mEmailView.getText().toString());
+                    startActivity(i);
+                    //finish();
+                }
+            }
+        };
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -93,6 +121,13 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        mAuth.addAuthStateListener(mAuthListener);
     }
 
     private void populateAutoComplete() {
@@ -145,7 +180,7 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
      * errors are presented and no actual login attempt is made.
      */
     private void attemptLogin() {
-        if (mAuthTask != null) {
+      /*  if (mAuthTask != null) {
             return;
         }
 
@@ -155,13 +190,16 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
 
         // Store values at the time of the login attempt.
         String email = mEmailView.getText().toString();
-        String password = mPasswordView.getText().toString();
+        String password = mPasswordView.getText().toString();*/
 
         boolean cancel = false;
         View focusView = null;
 
+        String email = mEmailView.getText().toString();
+        String password = mPasswordView.getText().toString();
+
         // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
+       /* if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
             mPasswordView.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView;
             cancel = true;
@@ -188,9 +226,29 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
             showProgress(true);
             mAuthTask = new UserLoginTask(email, password);
             mAuthTask.execute((Void) null);
+        }*/
+        if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
+            Toast.makeText(Login.this,"Fields are Empty!",Toast.LENGTH_LONG).show();
         }
-        Intent i1=new Intent(this,Wait_for_request.class);
-        startActivity(i1);
+        else {
+            startSignIn(email, password);
+        }
+        //Intent i1=new Intent(this,Wait_for_request.class);
+        //startActivity(i1);
+    }
+
+    private void startSignIn(String email,String password)
+    {
+        mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>(){
+
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+
+                if(!task.isSuccessful()){
+                    Toast.makeText(Login.this,"Wrong Email id or Password",Toast.LENGTH_LONG).show();
+                }
+            }
+        });
     }
 
     private boolean isEmailValid(String email) {
