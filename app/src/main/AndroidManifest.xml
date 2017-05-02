@@ -6,7 +6,22 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
-
+    <service
+        android:name=".firebase.MyFirebaseMessagingService"
+        android:enabled="true"
+        android:exported="true">
+        <intent-filter>
+            <action android:name="com.google.firebase.MESSAGING_EVENT" />
+        </intent-filter>
+    </service>
+    <service
+        android:name=".firebase.MyFirebaseInstanceIDService"
+        android:enabled="true"
+        android:exported="true">
+        <intent-filter>
+            <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+        </intent-filter>
+    </service>
     <application
         android:allowBackup="true"
         android:icon="@drawable/logo"
@@ -27,5 +42,8 @@
         <activity android:name=".Donor_details" />
         <activity android:name=".Map"></activity>
     </application>
-
+    {% includecode github_path="firebase/quickstart-android/messaging/app/src/main/AndroidManifest.xml"
+    region_tag="firebase_service" adjust_indentation="auto" github_link=True %}
+    {% includecode github_path="firebase/quickstart-android/messaging/app/src/main/AndroidManifest.xml"
+    region_tag="fcm_default_icon" adjust_indentation="auto" github_link=True %}
 </manifest>
