@@ -12,12 +12,8 @@ import android.widget.TextView;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
+import java.util.*;
 
-/*import com.firebase.client.DataSnapshot;
-import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;*/
-import com.firebase.client.FirebaseError;
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,7 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class Donor_details extends AppCompatActivity implements View.OnClickListener {
     Button b;
-    //private Firebase mRef;
+    //private Firebase fRef;
     private String email=null;
     private ValueEventListener mSearchedLocationReferenceListener;
     private DatabaseReference mSearchedLocationReference;
@@ -57,6 +53,7 @@ public class Donor_details extends AppCompatActivity implements View.OnClickList
 
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference mRef = database.getReference().child("Request_Database");
+        //fRef=new Firebase("https://foodhero-volunteer.firebaseio.com/Request_Database");
 
         /*Intent r=getIntent();
         Bundle b=r.getExtras();
@@ -101,6 +98,10 @@ public class Donor_details extends AppCompatActivity implements View.OnClickList
                             shelf.setText("Shelflife: "+slife);
                             address.setText("Address: "+addres);
 
+                            //Map<String, String> has=new Map<String, String>();
+                            //has.put("flag","1");
+                           // child.getRef().child("flag").setValue("1");
+
 
                             flag=true;
                             break;
@@ -114,6 +115,7 @@ public class Donor_details extends AppCompatActivity implements View.OnClickList
                         quantity.setText("No Details Available. ");
                         shelf.setText("No Details Available.  ");
                         address.setText("No Details Available.  ");
+                        b.setEnabled(false);
                     }
                 }
 
@@ -128,7 +130,7 @@ public class Donor_details extends AppCompatActivity implements View.OnClickList
 
 
         }
-        Toast.makeText(Donor_details.this,"Hi",Toast.LENGTH_LONG).show();
+        //Toast.makeText(Donor_details.this,"Hi",Toast.LENGTH_LONG).show();
 
         //Example of a call to a native method
         //TextView tv = (TextView) findViewById(R.id.sample_text);
@@ -138,6 +140,85 @@ public class Donor_details extends AppCompatActivity implements View.OnClickList
 
         public void onClick(View v) {
             b.setBackgroundResource(R.drawable.buttoni);
+            final FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference mRef = database.getReference().child("Request_Database");
+            //fRef=new Firebase("https://foodhero-volunteer.firebaseio.com/Request_Database");
+
+        /*Intent r=getIntent();
+        Bundle b=r.getExtras();
+        String rw=b.getString("email");*/
+
+
+
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            if (user != null) {
+                // Name, email address, and profile photo Url
+                String name = user.getDisplayName();
+                email = user.getEmail();
+                Uri photoUrl = user.getPhotoUrl();
+
+
+
+                // The user's ID, unique to the Firebase project. Do NOT use this value to
+                // authenticate with your backend server, if you have one. Use
+                // FirebaseUser.getToken() instead.
+                String uid = user.getUid();
+
+                mRef.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        Iterable<DataSnapshot> children=dataSnapshot.getChildren();
+
+                        //String email = user.getEmail();
+                        boolean flag=false;
+
+                        for(DataSnapshot child: children){
+                            String vid=child.child("volid").getValue(String.class);
+
+                            if(vid.equals(email))
+                            {
+                               /* String items=child.child("itemname").getValue(String.class);
+                                String qty=child.child("quant").getValue(String.class);
+                                String slife=child.child("shelflife").getValue(String.class);
+                                String addres=child.child("add").getValue(String.class);
+                                //Toast.makeText(Donor_details.this,"Hey "+did,Toast.LENGTH_LONG).show();
+                                item.setText("Item: "+items);
+                                quantity.setText("Number of persons it can feed: "+qty);
+                                shelf.setText("Shelflife: "+slife);
+                                address.setText("Address: "+addres);*/
+
+                                //Map<String, String> has=new Map<String, String>();
+                                //has.put("flag","1");
+                                child.getRef().child("flag").setValue("1");
+
+
+                                flag=true;
+                                break;
+                            }
+                        }
+
+                       /* if(!flag)
+                        {
+                            // Toast.makeText(Donor_details.this,"No Donor ",Toast.LENGTH_LONG).show();
+                            item.setText("No Details Available. ");
+                            quantity.setText("No Details Available. ");
+                            shelf.setText("No Details Available.  ");
+                            address.setText("No Details Available.  ");
+                            b.setEnabled(false);
+                        }*/
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+
+
+                });
+
+
+
+            }
             Intent i1=new Intent(Donor_details.this,Map.class);
             startActivity(i1);
         }

@@ -55,7 +55,7 @@
             android:textColor="@android:color/white"
             android:textSize="20dp" />
 
-        <ImageView
+     <!--   <ImageView
             android:id="@+id/imageView"
             android:layout_width="100dp"
             android:layout_height="120dp"
@@ -63,7 +63,7 @@
             android:layout_alignTop="@+id/tv1"
             android:cropToPadding="false"
             android:paddingRight="20dp"
-            app:srcCompat="@drawable/passport" />
+            app:srcCompat="@drawable/passport" />  -->
 
         <Button
             android:id="@+id/button1"
