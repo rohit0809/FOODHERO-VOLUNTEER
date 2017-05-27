@@ -82,16 +82,7 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
         populateAutoComplete();
 
         mPasswordView = (EditText) findViewById(R.id.password);
-       /* mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
-                if (id == R.id.login || id == EditorInfo.IME_NULL) {
-                    attemptLogin();
-                    return true;
-                }
-                return false;
-            }
-        });*/
+
 
         Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
 
@@ -104,9 +95,7 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
                 if(firebaseAuth.getCurrentUser()!=null)
                 {
                     Intent i=new Intent(Login.this,Wait_for_request.class);
-                    //Intent j=new Intent(Login.this,Donor_details.class);
-                   // i.putExtra("email",mEmailView.getText().toString());
-                    //j.putExtra("email",mEmailView.getText().toString());
+
                     startActivity(i);
                     //finish();
                 }
@@ -180,17 +169,7 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
      * errors are presented and no actual login attempt is made.
      */
     private void attemptLogin() {
-      /*  if (mAuthTask != null) {
-            return;
-        }
 
-        // Reset errors.
-        mEmailView.setError(null);
-        mPasswordView.setError(null);
-
-        // Store values at the time of the login attempt.
-        String email = mEmailView.getText().toString();
-        String password = mPasswordView.getText().toString();*/
 
         boolean cancel = false;
         View focusView = null;
@@ -198,35 +177,7 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
         String email = mEmailView.getText().toString();
         String password = mPasswordView.getText().toString();
 
-        // Check for a valid password, if the user entered one.
-       /* if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
-            mPasswordView.setError(getString(R.string.error_invalid_password));
-            focusView = mPasswordView;
-            cancel = true;
-        }
 
-        // Check for a valid email address.
-        if (TextUtils.isEmpty(email)) {
-            mEmailView.setError(getString(R.string.error_field_required));
-            focusView = mEmailView;
-            cancel = true;
-        } else if (!isEmailValid(email)) {
-            mEmailView.setError(getString(R.string.error_invalid_email));
-            focusView = mEmailView;
-            cancel = true;
-        }
-
-        if (cancel) {
-            // There was an error; don't attempt login and focus the first
-            // form field with an error.
-            focusView.requestFocus();
-        } else {
-            // Show a progress spinner, and kick off a background task to
-            // perform the user login attempt.
-            showProgress(true);
-            mAuthTask = new UserLoginTask(email, password);
-            mAuthTask.execute((Void) null);
-        }*/
         if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
             Toast.makeText(Login.this,"Fields are Empty!",Toast.LENGTH_LONG).show();
         }

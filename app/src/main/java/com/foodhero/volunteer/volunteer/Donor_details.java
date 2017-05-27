@@ -49,15 +49,13 @@ public class Donor_details extends AppCompatActivity implements View.OnClickList
         shelf = (TextView) findViewById(R.id.tv3);
         address = (TextView) findViewById(R.id.tv4);
 
+        b.setEnabled(false);
+
 
 
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference mRef = database.getReference().child("Request_Database");
-        //fRef=new Firebase("https://foodhero-volunteer.firebaseio.com/Request_Database");
 
-        /*Intent r=getIntent();
-        Bundle b=r.getExtras();
-        String rw=b.getString("email");*/
 
 
 
@@ -97,10 +95,9 @@ public class Donor_details extends AppCompatActivity implements View.OnClickList
                             quantity.setText("Number of persons it can feed: "+qty);
                             shelf.setText("Shelflife: "+slife);
                             address.setText("Address: "+addres);
+                            b.setEnabled(true);
 
-                            //Map<String, String> has=new Map<String, String>();
-                            //has.put("flag","1");
-                           // child.getRef().child("flag").setValue("1");
+
 
 
                             flag=true;
@@ -130,11 +127,7 @@ public class Donor_details extends AppCompatActivity implements View.OnClickList
 
 
         }
-        //Toast.makeText(Donor_details.this,"Hi",Toast.LENGTH_LONG).show();
 
-        //Example of a call to a native method
-        //TextView tv = (TextView) findViewById(R.id.sample_text);
-        //tv.setText(stringFromJNI());
     }
     View.OnClickListener imgButtonHandler = new View.OnClickListener() {
 
@@ -142,11 +135,7 @@ public class Donor_details extends AppCompatActivity implements View.OnClickList
             b.setBackgroundResource(R.drawable.buttoni);
             final FirebaseDatabase database = FirebaseDatabase.getInstance();
             DatabaseReference mRef = database.getReference().child("Request_Database");
-            //fRef=new Firebase("https://foodhero-volunteer.firebaseio.com/Request_Database");
 
-        /*Intent r=getIntent();
-        Bundle b=r.getExtras();
-        String rw=b.getString("email");*/
 
 
 
@@ -177,18 +166,7 @@ public class Donor_details extends AppCompatActivity implements View.OnClickList
 
                             if(vid.equals(email))
                             {
-                               /* String items=child.child("itemname").getValue(String.class);
-                                String qty=child.child("quant").getValue(String.class);
-                                String slife=child.child("shelflife").getValue(String.class);
-                                String addres=child.child("add").getValue(String.class);
-                                //Toast.makeText(Donor_details.this,"Hey "+did,Toast.LENGTH_LONG).show();
-                                item.setText("Item: "+items);
-                                quantity.setText("Number of persons it can feed: "+qty);
-                                shelf.setText("Shelflife: "+slife);
-                                address.setText("Address: "+addres);*/
 
-                                //Map<String, String> has=new Map<String, String>();
-                                //has.put("flag","1");
                                 child.getRef().child("flag").setValue("1");
 
 
@@ -197,15 +175,7 @@ public class Donor_details extends AppCompatActivity implements View.OnClickList
                             }
                         }
 
-                       /* if(!flag)
-                        {
-                            // Toast.makeText(Donor_details.this,"No Donor ",Toast.LENGTH_LONG).show();
-                            item.setText("No Details Available. ");
-                            quantity.setText("No Details Available. ");
-                            shelf.setText("No Details Available.  ");
-                            address.setText("No Details Available.  ");
-                            b.setEnabled(false);
-                        }*/
+
                     }
 
                     @Override
