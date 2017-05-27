@@ -17,18 +17,13 @@ Button b;
         setContentView(R.layout.wait_for_request);
     b=(Button)findViewById(R.id.button);
         b.setOnClickListener(imgButtonHandler);
-       // Intent r=getIntent();
-       // Bundle b=r.getExtras();
-        //rw=b.getString("email");
-        //sdmkndj
-//jknkncjksdjknckndsk
+
 }
     View.OnClickListener imgButtonHandler = new View.OnClickListener() {
 
         public void onClick(View v) {
             b.setBackgroundResource(R.drawable.buttoni);
             Intent i1=new Intent(Wait_for_request.this,Donor_details.class);
-            //i1.putExtra("email",rw);
             startActivity(i1);
         }
     };
